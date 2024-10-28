@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyApiTest - Rafael Ziliarski</string>
+    <string name="app_name">MyApiTest-Rafael_Ziliarski</string>
     <string name="car_year">%s/%s</string>
     <string name="login">Login</string>
     <string name="_55_11_89324_6587">+55 11 89324-6587</string>
@@ -10,4 +10,17 @@
     <string name="verify_sms">VERIFICAR SMS</string>
     <string name="google_sign_in_">GOOGLE SIGN IN</string>
     <string name="logout">Logout</string>
+    <string name="salvar">Salvar</string>
+    <string name="error_validate_form">Por favor, preencha o campo: %1$s</string>
+    <string name="error_validate_take_picture">Por favor, tire uma foto!</string>
+    <string name="model">Model:</string>
+    <string name="year">Year:</string>
+    <string name="license">License:</string>
+    <string name="image_url">Image Url</string>
+    <string name="error_create">Erro ao criar carro!</string>
+    <string name="success_create">Sucesso ao criar carro!</string>
+    <string name="modelo_do_carro">Modelo do carro</string>
+    <string name="ano_de_fabrica_o">Ano de fabricação:</string>
+    <string name="success_update">Carro atualizado com sucesso!</string>
+    <string name="succes_delete">Carro deletado com sucesso!</string>
 </resources>

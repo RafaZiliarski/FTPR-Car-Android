@@ -1,7 +1,7 @@
 package com.example.myapitest.service
 
 import com.example.myapitest.model.Car
-import com.example.myapitest.model.CarValue
+//import com.example.myapitest.model.CarValue
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -21,9 +21,19 @@ interface ApiService {
     suspend fun deleteItem(@Path("id") id: String) : Car
 
     @POST("car")
-    suspend fun addItem(@Body car: CarValue): Car
+    suspend fun addCar(@Body car: Car): Car
 
     @PATCH("car/{id}")
+    suspend fun updateItem(@Path("id") id: String, @Body car: Car): Car
+
+    /*
+    @POST("car")
+    suspend fun addCar(@Body car: CarValue): Car
+    */
+
+    /*
+    @PATCH("car/{id}")
     suspend fun updateItem(@Path("id") id: String, @Body car: CarValue): Car
+     */
 
 }

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Theme.MyApiTest" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Base.Theme.MyApiTest" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Desativar ActionBar padrão -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.MyApiTest" parent="Base.Theme.MyApiTest" />
 </resources>

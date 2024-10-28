@@ -36,12 +36,12 @@ class CarAdapter(
         holder.itemView.setOnClickListener{
             carClickListener.invoke(car)
         }
-        holder.modelView.text = car.value.name
-        holder.yearlView.text = car.value.year
-        holder.licenseView.text = car.value.licence
+        holder.modelView.text = car.name
+        holder.yearlView.text = car.year
+        holder.licenseView.text = car.license
 
         Picasso.get()
-            .load(car.value.imageUrl)
+            .load(car.imageUrl)
             .placeholder(R.drawable.ic_download)
             .error(R.drawable.ic_error)
             .transform(CircleTransform())
