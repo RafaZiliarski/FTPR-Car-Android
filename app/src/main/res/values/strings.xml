@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">MyApiTest - COLOQUE O SEU NOME AQUI</string>
+    <string name="app_name">MyApiTest - Rafael Ziliarski</string>
+    <string name="car_year">%s/%s</string>
+    <string name="login">Login</string>
+    <string name="_55_11_89324_6587">+55 11 89324-6587</string>
+    <string name="unknown_error">Erro desconhecido!</string>
 </resources>

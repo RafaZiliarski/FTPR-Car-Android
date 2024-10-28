@@ -7,29 +7,21 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.myapitest.databinding.ActivityCarDetailBinding
 import com.example.myapitest.databinding.ActivityMainBinding
+import com.example.myapitest.databinding.ActivityNewCarBinding
 
-class CarDetailActivity : AppCompatActivity() {
+class NewCarActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityCarDetailBinding
+    private lateinit var binding: ActivityNewCarBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCarDetailBinding.inflate(layoutInflater)
+        binding = ActivityNewCarBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
     }
 
     companion object {
-        private const val ARG_ID = "ARG_ID"
-
-        fun newIntent(
-            context: Context,
-            itemId: String
-        ) = Intent(context, CarDetailActivity::class.java).apply {
-            putExtra(ARG_ID, itemId)
-        }
-
+        fun newIntent(context: Context) = Intent(context, NewCarActivity::class.java)
     }
 }

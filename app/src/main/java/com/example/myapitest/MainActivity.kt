@@ -2,6 +2,8 @@ package com.example.myapitest
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.location.Location
 import android.os.Bundle
@@ -10,16 +12,25 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat.checkSelfPermission
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapitest.adapter.CarAdapter
+import com.example.myapitest.database.DatabaseBuilder
+import com.example.myapitest.database.model.UserLocation
 import com.example.myapitest.databinding.ActivityMainBinding
+import com.example.myapitest.model.Car
+import com.example.myapitest.service.RetrofitClient
+import com.example.myapitest.service.safeApiCall
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import com.example.myapitest.service.Result
 
 class MainActivity : AppCompatActivity() {
 
@@ -55,7 +66,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            binding.swipeRefreshLayout.isRefreshing = true
+            fetchItems()
+        }
+        binding.addCta.setOnClickListener {
+            startActivity(NewCarActivity.newIntent(this))
+        }
     }
 
     private fun requestLocationPermission() {
@@ -133,12 +151,24 @@ class MainActivity : AppCompatActivity() {
     private fun handleOnSuccess(data: List<Car>) {
         val adapter = CarAdapter(data) {
             // Listener do item clicado
-            startActivity(ItemDetailActivity.newIntent(
+            startActivity(CarDetailActivity.newIntent(
                 this,
                 it.id
             )
             )
         }
         binding.recyclerView.adapter = adapter
+    }
+
+    private fun onLogout() {
+        FirebaseAuth.getInstance().signOut()
+        val intent = LoginActivity.newIntent(this)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
+    }
+
+    companion object {
+        fun newIntent(context: Context) = Intent(context, MainActivity::class.java)
     }
 }

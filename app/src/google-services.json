@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "521132139537",
+    "project_id": "mycarappapi",
+    "storage_bucket": "mycarappapi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521132139537:android:89bd6fc3f52b9ac8b7fdb0",
+        "android_client_info": {
+          "package_name": "com.example.myapitest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "521132139537-d7t6dh1afthet7ne6527vqbpkucuut4p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapitest",
+            "certificate_hash": "5a4d6d15e7dc7671ffb0cee4658f68042b61dcc3"
+          }
+        },
+        {
+          "client_id": "521132139537-ajkqunk0suknk57g0rh40hhppk65vu6f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvVjCJBhrwSbeuXB2CyuiF59JefGHzbJg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "521132139537-ajkqunk0suknk57g0rh40hhppk65vu6f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
