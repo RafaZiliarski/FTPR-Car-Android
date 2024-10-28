@@ -8,10 +8,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    //private const val BASE_URL = "http://10.0.2.2:3000/"/*IP Local do computador para executar
+    private const val BASE_URL = "http://10.0.2.2:3000/"/*IP Local do computador para executar
     //        pelo emulador */
-    private const val BASE_URL = "http://192.168.0.7:3000/" /*IP Local do computador para executar
-        pelo celular */
+   // private const val BASE_URL = "http://192.168.0.5:3000/"/*IP Local do computador para executar
+   // pelo celular */
     private val logginInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }

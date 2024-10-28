@@ -11,19 +11,19 @@ import retrofit2.http.Path
 
 interface ApiService {
 
-    @GET("cars")
-    suspend fun getItems(): List<Car>
+    @GET("car")
+    suspend fun getCars(): List<Car>
 
-    @GET("cars/{id}")
+    @GET("car/{id}")
     suspend fun getItem(@Path("id") id: String) : Car
 
-    @DELETE("cars/{id}")
+    @DELETE("car/{id}")
     suspend fun deleteItem(@Path("id") id: String) : Car
 
-    @POST("cars")
+    @POST("car")
     suspend fun addItem(@Body car: CarValue): Car
 
-    @PATCH("cars/{id}")
+    @PATCH("car/{id}")
     suspend fun updateItem(@Path("id") id: String, @Body car: CarValue): Car
 
 }

@@ -4,4 +4,10 @@
     <string name="login">Login</string>
     <string name="_55_11_89324_6587">+55 11 89324-6587</string>
     <string name="unknown_error">Erro desconhecido!</string>
+    <string name="code_brazil">+55</string>
+    <string name="send_sms">ENVIAR SMS</string>
+    <string name="hint_verify_sms">123456</string>
+    <string name="verify_sms">VERIFICAR SMS</string>
+    <string name="google_sign_in_">GOOGLE SIGN IN</string>
+    <string name="logout">Logout</string>
 </resources>

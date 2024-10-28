@@ -8,6 +8,8 @@ import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -44,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         requestLocationPermission()
         setupView()
+        FirebaseAuth.getInstance().currentUser
 
         // 1- Criar tela de Login com algum provedor do Firebase (Telefone, Google)
         //      Cadastrar o Seguinte celular para login de test: +5511912345678
@@ -58,6 +61,25 @@ class MainActivity : AppCompatActivity() {
         //      { "id": "001", "imageUrl":"https://image", "year":"2020/2020", "name":"Gaspar", "licence":"ABC-1234", "place": {"lat": 0, "long": 0} }
 
         // Opcionalmente trabalhar com o Google Maps ara enviar o place
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_logout -> {
+                FirebaseAuth.getInstance().signOut()
+                val intent = LoginActivity.newIntent(this)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onResume() {
@@ -135,7 +157,7 @@ class MainActivity : AppCompatActivity() {
     private fun fetchItems() {
         // Alterando execução para IO thread
         CoroutineScope(Dispatchers.IO).launch {
-            val result = safeApiCall { RetrofitClient.apiService.getItems() }
+            val result = safeApiCall { RetrofitClient.apiService.getCars() }
 
             // Alterando execução para Main thread
             withContext(Dispatchers.Main) {
