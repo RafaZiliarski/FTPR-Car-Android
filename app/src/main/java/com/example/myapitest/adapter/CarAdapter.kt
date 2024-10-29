@@ -38,7 +38,7 @@ class CarAdapter(
         }
         holder.modelView.text = car.name
         holder.yearlView.text = car.year
-        holder.licenseView.text = car.license
+        holder.licenseView.text = car.licence
 
         Picasso.get()
             .load(car.imageUrl)

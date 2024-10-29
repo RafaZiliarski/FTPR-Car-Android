@@ -70,7 +70,7 @@ class CarDetailActivity : AppCompatActivity(), OnMapReadyCallback {
                     car.id,
                     car.copy(
                         year = binding.year.text.toString(),
-                        license = binding.license.text.toString()
+                        licence = binding.license.text.toString()
                     )
                 )
             }
@@ -117,7 +117,7 @@ class CarDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun handleSuccess() {
         binding.model.text = car.name
         binding.year.setText(car.year)
-        binding.license.setText(car.license)
+        binding.license.setText(car.licence)
         binding.image.loadUrl(car.imageUrl)
         loadItemLocationInGoogleMap()
     }
