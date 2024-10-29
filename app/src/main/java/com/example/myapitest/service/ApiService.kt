@@ -1,7 +1,6 @@
 package com.example.myapitest.service
 
 import com.example.myapitest.model.Car
-import com.example.myapitest.model.CarValue
 import com.example.myapitest.model.EspecificCar
 import retrofit2.Call
 //import com.example.myapitest.model.CarValue
@@ -27,6 +26,6 @@ interface ApiService {
     suspend fun getCar(@Path("id") id: String): EspecificCar
 
     @PATCH("car/{id}")
-    suspend fun updateItem(@Path("id") id: String, @Body car: CarValue): EspecificCar
+    suspend fun updateItem(@Path("id") id: String, @Body car: Car): EspecificCar
 
 }

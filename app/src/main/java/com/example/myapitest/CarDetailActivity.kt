@@ -7,8 +7,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapitest.databinding.ActivityCarDetailBinding
-import com.example.myapitest.model.Car
-import com.example.myapitest.model.CarValue
 import com.example.myapitest.model.EspecificCar
 import com.example.myapitest.service.RetrofitClient
 import com.example.myapitest.service.safeApiCall
@@ -169,7 +167,7 @@ class CarDetailActivity : AppCompatActivity(), OnMapReadyCallback {
             mMap.addMarker(
                 MarkerOptions()
                     .position(latLng)
-                    .title(it.name)
+                    //.title(it.name)
             )
             mMap.moveCamera(
                 CameraUpdateFactory.newLatLngZoom(

@@ -43,7 +43,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import android.Manifest.permission
 import com.example.myapitest.model.Car
-import com.example.myapitest.model.CarValue
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.security.SecureRandom
@@ -188,7 +187,6 @@ class NewCarActivity : AppCompatActivity(), OnMapReadyCallback {
         val name = binding.model.text.toString()
         val carPosition = selectedMarker?.position?.let {
             CarPlace(
-                name = name,
                 it.latitude,
                 it.longitude
             )
