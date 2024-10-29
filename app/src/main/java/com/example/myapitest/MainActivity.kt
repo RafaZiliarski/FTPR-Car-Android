@@ -48,6 +48,8 @@ class MainActivity : AppCompatActivity() {
         setupView()
         FirebaseAuth.getInstance().currentUser
 
+        //System.out.println("BuildConfig.APIKEY: ${BuildConfig.API_KEY}")
+
         // 1- Criar tela de Login com algum provedor do Firebase (Telefone, Google)
         //      Cadastrar o Seguinte celular para login de test: +5511912345678
         //      Código de verificação: 101010

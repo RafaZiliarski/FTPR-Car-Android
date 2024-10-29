@@ -41,7 +41,7 @@
         </activity>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBwrbHwDLSfICV-APZ21a3m1QbvjZCC02o" />
+            android:value="${MAPS_API_KEY}" />
         <activity
             android:name=".NewCarActivity"
             android:exported="false"
