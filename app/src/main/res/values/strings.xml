@@ -18,7 +18,7 @@
     <string name="license">License:</string>
     <string name="image_url">Image Url</string>
     <string name="error_create">Erro ao criar carro!</string>
-    <string name="success_create">Sucesso ao criar carro!</string>
+    <string name="success_create">Carro %1$s criado com sucesso!</string>
     <string name="modelo_do_carro">Modelo do carro</string>
     <string name="ano_de_fabrica_o">Ano de fabricação:</string>
     <string name="success_update">Carro atualizado com sucesso!</string>

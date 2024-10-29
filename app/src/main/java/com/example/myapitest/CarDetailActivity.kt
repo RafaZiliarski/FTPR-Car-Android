@@ -158,7 +158,7 @@ class CarDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun loadItemLocationInGoogleMap() {
         car.place?.let {
             binding.googleMapContent.visibility = View.VISIBLE
-            val latLng = LatLng(it.latitude, it.longitude)
+            val latLng = LatLng(it.lat, it.long)
             mMap.addMarker(
                 MarkerOptions()
                     .position(latLng)

@@ -7,22 +7,10 @@ data class Car(
     val name: String,
     val licence: String,
     val place: CarPlace?
-    //val value: CarValue
 )
-
-/*
-data class CarValue(
-    val id: String,
-    val imageUrl: String,
-    val year: String,
-    val name: String,
-    val licence: String,
-    val place: CarPlace?
-)
-*/
 
 data class CarPlace(
-  val name: String,
-  val latitude: Double,
-val longitude: Double
+    val name: String,
+    val lat: Double,
+    val long: Double
 )
