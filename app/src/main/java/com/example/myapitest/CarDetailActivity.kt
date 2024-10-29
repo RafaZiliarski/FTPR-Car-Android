@@ -68,34 +68,6 @@ class CarDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
     }
 
-    private fun downloadImageFromFirebase() {
-        // Inicializar o Firebase Storage
-        val storageRef = FirebaseStorage.getInstance().reference
-
-        // criar uma referência para o arquivo no Firebase
-        val imagesRef = storageRef.child("images/${UUID.randomUUID()}.jpg")
-
-        // converter o Bitmap para ByteArrayOutputStream
-        val dados: ByteArray? = null
-        val armazena: Long = 0
-        val baos = ByteArrayInputStream(dados)
-
-        imagesRef.getBytes(armazena)
-            .addOnFailureListener {
-                Toast.makeText(
-                    this,
-                    "Falha ao realizar o download",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-            .addOnSuccessListener {
-                imagesRef.downloadUrl.addOnSuccessListener { uri ->
-                    binding.image.loadUrl(uri.toString())
-                }
-            }
-    }
-
-
     private fun editItem() {
         CoroutineScope(Dispatchers.IO).launch {
             val result = safeApiCall {
