@@ -43,6 +43,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import android.Manifest.permission
 import com.example.myapitest.model.Car
+import com.example.myapitest.model.CarValue
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.security.SecureRandom

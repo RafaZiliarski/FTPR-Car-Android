@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapitest.databinding.ActivityCarDetailBinding
 import com.example.myapitest.model.Car
+import com.example.myapitest.model.CarValue
+import com.example.myapitest.model.EspecificCar
 import com.example.myapitest.service.RetrofitClient
 import com.example.myapitest.service.safeApiCall
 import com.google.android.gms.maps.GoogleMap
@@ -22,12 +24,15 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.storage.FirebaseStorage
+import java.io.ByteArrayInputStream
+import java.util.UUID
 
 class CarDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var binding: ActivityCarDetailBinding
 
-    private lateinit var car: Car
+    private lateinit var car: EspecificCar
 
     private lateinit var mMap: GoogleMap
 
@@ -63,12 +68,40 @@ class CarDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
     }
 
+    private fun downloadImageFromFirebase() {
+        // Inicializar o Firebase Storage
+        val storageRef = FirebaseStorage.getInstance().reference
+
+        // criar uma referência para o arquivo no Firebase
+        val imagesRef = storageRef.child("images/${UUID.randomUUID()}.jpg")
+
+        // converter o Bitmap para ByteArrayOutputStream
+        val dados: ByteArray? = null
+        val armazena: Long = 0
+        val baos = ByteArrayInputStream(dados)
+
+        imagesRef.getBytes(armazena)
+            .addOnFailureListener {
+                Toast.makeText(
+                    this,
+                    "Falha ao realizar o download",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            .addOnSuccessListener {
+                imagesRef.downloadUrl.addOnSuccessListener { uri ->
+                    binding.image.loadUrl(uri.toString())
+                }
+            }
+    }
+
+
     private fun editItem() {
         CoroutineScope(Dispatchers.IO).launch {
             val result = safeApiCall {
                 RetrofitClient.apiService.updateItem(
                     car.id,
-                    car.copy(
+                    car.value.copy(
                         year = binding.year.text.toString(),
                         licence = binding.license.text.toString()
                     )
@@ -98,15 +131,17 @@ class CarDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun loadItem() {
         val itemId = intent.getStringExtra(ARG_ID) ?: ""
+        System.out.println("ID passado: $itemId")
 
         CoroutineScope(Dispatchers.IO).launch {
-            val result = safeApiCall { RetrofitClient.apiService.getItem(itemId) }
+            val result = safeApiCall { RetrofitClient.apiService.getCar(itemId) }
 
             withContext(Dispatchers.Main) {
                 when (result) {
                     is Result.Error -> {}
                     is Result.Success -> {
                         car = result.data
+                        System.out.println("Car.model: ${car.value.name}")
                         handleSuccess()
                     }
                 }
@@ -115,10 +150,10 @@ class CarDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun handleSuccess() {
-        binding.model.text = car.name
-        binding.year.setText(car.year)
-        binding.license.setText(car.licence)
-        binding.image.loadUrl(car.imageUrl)
+        binding.model.text = car.value.name
+        binding.year.setText(car.value.year)
+        binding.license.setText(car.value.licence)
+        binding.image.loadUrl(car.value.imageUrl)
         loadItemLocationInGoogleMap()
     }
 
@@ -156,7 +191,7 @@ class CarDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun loadItemLocationInGoogleMap() {
-        car.place?.let {
+        car.value.place?.let {
             binding.googleMapContent.visibility = View.VISIBLE
             val latLng = LatLng(it.lat, it.long)
             mMap.addMarker(

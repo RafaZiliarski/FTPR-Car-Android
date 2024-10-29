@@ -142,7 +142,7 @@ class MainActivity : AppCompatActivity() {
             if (task.isSuccessful && task.result != null) {
                 val location = task.result
                 val userLocation = UserLocation(latitude = location.latitude, longitude = location.longitude)
-                Log.d("HELLO_WORLD", "Lat: ${userLocation.latitude} Long: ${userLocation.longitude}")
+                Log.d("OPA_GURI", "Lat: ${userLocation.latitude} Long: ${userLocation.longitude}")
                 CoroutineScope(Dispatchers.IO).launch {
                     DatabaseBuilder.getInstance()
                         .userLocationDao()
