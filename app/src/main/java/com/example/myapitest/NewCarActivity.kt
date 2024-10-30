@@ -214,7 +214,7 @@ class NewCarActivity : AppCompatActivity(), OnMapReadyCallback {
                     is Result.Success -> {
                         Toast.makeText(
                             this@NewCarActivity,
-                            getString(R.string.success_create, result.data.id),
+                            getString(R.string.success_create, result.data.name),
                             Toast.LENGTH_SHORT
                         ).show()
                         finish()
